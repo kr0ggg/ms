@@ -185,11 +185,6 @@ let game = new MSGame();
 //this required to open the main
 //window.addEventListener('load', main);
 
-function main(){
-    let html = document.querySelector("html");
-    console.log("Your render area:", html.clientWidth, "x", html.clientHeight)
-}
-
 function cardClicked(game, card, row, col) {
     console.log("card clicked!  ", card.dataset.position);
 }
@@ -211,11 +206,15 @@ function renderBoard(game) {
             let cell = board[row][col];
             console.log("row", row, "columns", col, "cell value", cell);
             const card = document.createElement("div");
+            card.className = "card";
             card.dataset.position = row+"x"+col;
-            card.innerHTML = row+"x"+col;
+            // card.innerHTML = row+"x"+col;
             switch (cell) {
                 case "H":
-                    card.className = "facingDown";
+                    let image = document.createElement("img");
+                    image.src = "images/facingDown.png";
+                    image.className = "cardImage";
+                    card.appendChild(image);
                     break;
                 default:
                     break;
@@ -229,10 +228,17 @@ function renderBoard(game) {
         }
     }
 }
+
+
+function main(){
+    let html = document.querySelector("html");
+    console.log("Your render area:", html.clientWidth, "x", html.clientHeight);
+    game.init(10, 10, 5);
+    renderBoard(game);
+}
 main();
 
-game.init(10, 10, 5);
-renderBoard(game);
+
 
 // console.log(game.getRendering().join("\n"));
 // console.log(game.getStatus());
