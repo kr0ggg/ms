@@ -208,6 +208,7 @@ function renderBoard(game) {
             const card = document.createElement("div");
             card.className = "card";
             card.dataset.position = row+"x"+col;
+            card.innerHTML = "";
             // card.innerHTML = row+"x"+col;
             switch (cell) {
                 case "H":
